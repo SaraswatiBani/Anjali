@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Best-Friend💛 Anjali!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    .container {
+      padding: 1.5rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #c71585;
+      margin-bottom: 1rem;
+    }
+    p.love-message {
+      font-size: 1.2rem;
+      max-width: 90%;
+      margin: 0 auto 1.5rem;
+    }
+    .heart {
+      font-size: 2rem;
+      animation: pulse 1s infinite;
+      color: red;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    .surprise {
+      margin-top: 2rem;
+    }
+    button {
+      background: #ff69b4;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 0.5rem;
+    }
+    button:hover {
+      background: #ff1493;
+    }
+    #secretMessage {
+      display: none;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #800000;
+    }
+    .photo-gallery {
+      position: relative;
+      width: 90%;
+      max-width: 300px;
+      margin: 2rem auto;
+    }
+    .photo-gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+    .photo-gallery img.active {
+      display: block;
+    }
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .falling-heart {
+      position: fixed;
+      top: 0;
+      font-size: 2rem;
+      animation: fall 3s linear infinite;
+      color: red;
+      z-index: 999;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-50px); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p.love-message {
+        font-size: 1rem;
+      }
+      button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <div class="heart">❤️</div>
+    <h1>For My Beautiful Pooja</h1>
+    <p class="love-message">
+      Every moment with you is a gift. This little website is just a tiny way to say how much I love you.
+      You make my world brighter, my heart lighter, and my soul happier. 💖
+    </p>
+
+    <div class="photo-gallery">
+      <img src="https://i.postimg.cc/sXb94vyh/IMG-20240602-WA0015.jpg" class="active" alt="Photo 1">
+      <img src="https://i.postimg.cc/T2WcYqqq/IMG-20240530-190917-759.jpg" alt="Photo 2">
+      <img src="https://i.postimg.cc/d0x8JLhx/IMG-20240530-190920-496.jpg" alt="Photo 3">
+      <button onclick="prevPhoto()">⟨</button>
+      <button onclick="nextPhoto()">⟩</button>
+    </div>
+
+    <div class="surprise">
+      <button onclick="showMessageAndHearts()">Click to Reveal My Surprise</button>
+      <p id="secretMessage">Pooja, you are my everything. I can't imagine life without you. I love you more each day. ❤️</p>
+    </div>
+
+    <div class="footer">
+      Made with love just for you, Pooja 💕
+    </div>
+  </div>
+
+  <script>
+    let currentPhoto = 0;
+    const photos = document.querySelectorAll('.photo-gallery img');
+
+    function showPhoto(index) {
+      photos.forEach((img, i) => {
+        img.classList.remove('active');
+        if (i === index) img.classList.add('active');
+      });
+    }
+
+    function nextPhoto() {
+      currentPhoto = (currentPhoto + 1) % photos.length;
+      showPhoto(currentPhoto);
+    }
+
+    function prevPhoto() {
+      currentPhoto = (currentPhoto - 1 + photos.length) % photos.length;
+      showPhoto(currentPhoto);
+    }
+
+    function showMessageAndHearts() {
+      document.getElementById('secretMessage').style.display = 'block';
+      for (let i = 0; i < 30; i++) {
+        let heart = document.createElement('div');
+        heart.className = 'falling-heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = 2 + Math.random() * 3 + 's';
+        heart.innerText = '💛❤️';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+    }
+  </script>
+</body>
+</html>
